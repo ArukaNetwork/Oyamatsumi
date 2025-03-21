@@ -34,7 +34,7 @@ data class MiningSettingComponent(
 
     companion object {
         private val PLAYER_REQUIRES: (Player) -> Boolean = { player ->
-            player.isSneaking
+            player.isSneaking && player.world.name == "shigen"
         }
 
         private val REDUCE_ONE: (ItemStack, Map<Location, Boolean>) -> Map<Location, Boolean> = { tool, loc ->
