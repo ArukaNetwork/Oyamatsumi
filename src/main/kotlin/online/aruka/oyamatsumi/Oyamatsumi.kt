@@ -107,31 +107,43 @@ class Oyamatsumi : JavaPlugin() {
         }
 
         Bukkit.getPluginManager().registerEvents(MineListener, this)
-        addNormalCategorizedSettings(
-            allShovels,
-            SquareTunnelPattern(),
-            maxMiningBlock = 9,
-            Material.GRASS_BLOCK,
-            Material.DIRT,
-            Material.COARSE_DIRT,
-            Material.PODZOL,
-            Material.MYCELIUM,
-            Material.SAND,
-            Material.RED_SAND,
-            Material.GRAVEL,
-            Material.CLAY,
-            Material.MUD,
-            Material.PACKED_MUD,
-            Material.SNOW_BLOCK,
-            Material.SNOW,
-            Material.ICE,
-            Material.PACKED_ICE,
-            Material.BLUE_ICE,
-            Material.FROSTED_ICE,
-            Material.SOUL_SAND,
-            Material.SOUL_SOIL,
-            Material.ROOTED_DIRT
-        )
+
+        setOf(
+            Triple(setOf(Material.WOODEN_SHOVEL), SquareTunnelPattern(), 9),
+            Triple(setOf(Material.STONE_SHOVEL), SquareTunnelPattern(), 18),
+            Triple(setOf(Material.IRON_SHOVEL), SquareTunnelPattern(), 27),
+            Triple(setOf(Material.GOLDEN_SHOVEL), SquareTunnelPattern(radius = 2), 25),
+            Triple(setOf(Material.DIAMOND_SHOVEL), SquareTunnelPattern(), 45),
+            Triple(setOf(Material.NETHERITE_SHOVEL), SquareTunnelPattern(radius = 2), 125)
+        ).forEach { (tools, pattern, maxBlocks) ->
+            MiningManager.MINING_COMPONENTS.add(
+                MiningSettingComponent(
+                    setOf(
+                        Material.GRASS_BLOCK,
+                        Material.DIRT,
+                        Material.COARSE_DIRT,
+                        Material.PODZOL,
+                        Material.MYCELIUM,
+                        Material.SAND,
+                        Material.RED_SAND,
+                        Material.GRAVEL,
+                        Material.CLAY,
+                        Material.MUD,
+                        Material.PACKED_MUD,
+                        Material.SNOW_BLOCK,
+                        Material.SNOW,
+                        Material.ICE,
+                        Material.PACKED_ICE,
+                        Material.BLUE_ICE,
+                        Material.FROSTED_ICE,
+                        Material.SOUL_SAND,
+                        Material.SOUL_SOIL,
+                        Material.ROOTED_DIRT
+                    ),
+                    tools, maxBlocks, pattern
+                )
+            )
+        }
 
         Material
             .entries
@@ -224,27 +236,34 @@ class Oyamatsumi : JavaPlugin() {
             Material.MOSSY_COBBLESTONE
         )
 
-        MiningManager.MINING_COMPONENTS.add(
-            MiningSettingComponent(
-                targets = setOf(
-                    Material.NETHERRACK,
-                    Material.STONE,
-                    Material.COBBLESTONE,
-                    Material.GRANITE,
-                    Material.DIORITE,
-                    Material.ANDESITE,
-                    Material.DEEPSLATE,
-                    Material.COBBLED_DEEPSLATE,
-                    Material.TUFF,
-                    Material.CALCITE,
-                    Material.DRIPSTONE_BLOCK,
-                    Material.POINTED_DRIPSTONE,
-                ),
-                tools = allPickaxes,
-                maxMiningBlocks = 9,
-                SquareTunnelPattern()
+        setOf(
+            Triple(setOf(Material.WOODEN_PICKAXE), SquareTunnelPattern(), 9),
+            Triple(setOf(Material.STONE_PICKAXE), SquareTunnelPattern(), 18),
+            Triple(setOf(Material.IRON_PICKAXE), SquareTunnelPattern(), 27),
+            Triple(setOf(Material.GOLDEN_PICKAXE), SquareTunnelPattern(radius = 2), 25),
+            Triple(setOf(Material.DIAMOND_PICKAXE), SquareTunnelPattern(), 45),
+            Triple(setOf(Material.NETHERITE_PICKAXE), SquareTunnelPattern(radius = 2), 125)
+        ).forEach { (tools, pattern, maxBlocks) ->
+            MiningManager.MINING_COMPONENTS.add(
+                MiningSettingComponent(
+                    setOf(
+                        Material.NETHERRACK,
+                        Material.STONE,
+                        Material.COBBLESTONE,
+                        Material.GRANITE,
+                        Material.DIORITE,
+                        Material.ANDESITE,
+                        Material.DEEPSLATE,
+                        Material.COBBLED_DEEPSLATE,
+                        Material.TUFF,
+                        Material.CALCITE,
+                        Material.DRIPSTONE_BLOCK,
+                        Material.POINTED_DRIPSTONE
+                    ),
+                    tools, maxBlocks, pattern
+                )
             )
-        )
+        }
 
         addNormalCategorizedSettings(
             tools = allPickaxes,
