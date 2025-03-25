@@ -258,7 +258,8 @@ class Oyamatsumi : JavaPlugin() {
                         Material.TUFF,
                         Material.CALCITE,
                         Material.DRIPSTONE_BLOCK,
-                        Material.POINTED_DRIPSTONE
+                        Material.POINTED_DRIPSTONE,
+                        *Material.entries.filter { type -> type.isBlock && type.name.endsWith("TERRACOTTA") }.toTypedArray()
                     ),
                     tools, maxBlocks, pattern
                 )
