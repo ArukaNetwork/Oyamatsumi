@@ -1,8 +1,6 @@
 package online.aruka.oyamatsumi
 
 import com.sk89q.worldguard.WorldGuard
-import me.ryanhamshire.GriefPrevention.DataStore
-import me.ryanhamshire.GriefPrevention.GriefPrevention
 import net.coreprotect.CoreProtect
 import net.coreprotect.CoreProtectAPI
 import online.aruka.oyamatsumi.impl.MiningManager
@@ -50,8 +48,6 @@ class Oyamatsumi : JavaPlugin() {
 
     companion object {
         var GRIEF_PREVENTION_ENABLED: Boolean = false
-        var GRIEF_PREVENTION_INSTANCE: GriefPrevention? = null
-        var GRIEF_PREVENTION_DATA: DataStore? = null
 
         var WORLD_GUARD_ENABLED: Boolean = false
         var WORLD_GUARD: WorldGuard? = null
@@ -67,19 +63,6 @@ class Oyamatsumi : JavaPlugin() {
         instance = this
         MiningManager.loadPlayerSettings()
         getCommand("miner")?.setExecutor(MiningManager)
-
-        Bukkit.getPluginManager().getPlugin("GriefPrevention")?.let { pl ->
-            logger.info("GriefPrevention detected.")
-            (pl as? GriefPrevention)?.let { instance ->
-                GRIEF_PREVENTION_ENABLED = true
-                GRIEF_PREVENTION_INSTANCE = instance
-                GRIEF_PREVENTION_DATA = instance.dataStore
-            } ?: run {
-                logger.info("Failed to enable GriefPrevention features.")
-            }
-        } ?: run {
-            logger.info("GriefPrevention not detected.")
-        }
 
         Bukkit.getPluginManager().getPlugin("WorldGuard")?.let { _ ->
             logger.info("WorldGuard detected.")

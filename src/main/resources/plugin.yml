@@ -2,8 +2,9 @@ name: Oyamatsumi
 version: '0.2'
 main: online.aruka.oyamatsumi.Oyamatsumi
 api-version: '1.21'
+depend:
+  - MCKotlin-Paper
 softdepend:
-  - GriefPrevention
   - WorldGuard
   - PlaceholderAPI
   - CoreProtect

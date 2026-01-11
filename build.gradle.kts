@@ -15,10 +15,6 @@ repositories {
         name = "sonatype"
     }
 
-    maven("https://jitpack.io") {
-        name = "jitpack"
-    }
-
     maven("https://maven.enginehub.org/repo/") {
         name = "sk89q-repo"
     }
@@ -29,8 +25,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("com.github.GriefPrevention:GriefPrevention:16.18.4")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.13")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("net.coreprotect:coreprotect:22.4")

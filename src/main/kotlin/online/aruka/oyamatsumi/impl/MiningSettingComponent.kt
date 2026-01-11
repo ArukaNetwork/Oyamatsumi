@@ -3,7 +3,6 @@ package online.aruka.oyamatsumi.impl
 import com.sk89q.worldedit.bukkit.BukkitAdapter
 import com.sk89q.worldedit.math.BlockVector3
 import com.sk89q.worldguard.protection.managers.RegionManager
-import me.ryanhamshire.GriefPrevention.ClaimPermission
 import online.aruka.oyamatsumi.Oyamatsumi
 import online.aruka.oyamatsumi.interfaces.MiningPattern
 import org.bukkit.FluidCollisionMode
@@ -34,7 +33,7 @@ data class MiningSettingComponent(
 
     companion object {
         private val PLAYER_REQUIRES: (Player) -> Boolean = { player ->
-            player.isSneaking && player.world.name == "shigen"
+            player.isSneaking && player.inventory.firstEmpty() != -1 /* <- not full */ && player.world.name == "shigen"
         }
 
         private val REDUCE_ONE: (ItemStack, Map<Location, Boolean>) -> Map<Location, Boolean> = { tool, loc ->
@@ -50,13 +49,6 @@ data class MiningSettingComponent(
             val result: MutableMap<Location, Boolean> = mutableMapOf()
             for (loc in locations) {
                 val element: MutableSet<Boolean> = mutableSetOf(true)
-                if (Oyamatsumi.GRIEF_PREVENTION_ENABLED) {
-                    element.add(Oyamatsumi.GRIEF_PREVENTION_DATA!!
-                        .claims
-                        .filter { c -> c.contains(loc, false, false) }
-                        .all { c -> c.hasExplicitPermission(player, ClaimPermission.Build) }
-                    )
-                }
 
                 if (Oyamatsumi.WORLD_GUARD_ENABLED) {
                     val regionManager: RegionManager = Oyamatsumi.WORLD_GUARD!!.platform
