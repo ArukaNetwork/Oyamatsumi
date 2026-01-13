@@ -1,13 +1,15 @@
 name: Oyamatsumi
-version: '0.2'
+version: '0.3'
 main: online.aruka.oyamatsumi.Oyamatsumi
 api-version: '1.21'
-depend:
-  - MCKotlin-Paper
+
 softdepend:
   - WorldGuard
   - PlaceholderAPI
   - CoreProtect
+
+libraries:
+  - "org.jetbrains.kotlin:kotlin-stdlib:2.1.10"
 
 commands:
   miner:
