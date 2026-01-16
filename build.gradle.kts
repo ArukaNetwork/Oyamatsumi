@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.13")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("net.coreprotect:coreprotect:22.4")
